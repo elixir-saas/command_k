@@ -5,8 +5,8 @@ defmodule CommandK.LiveView do
   alias Phoenix.LiveView.JS
 
   @prefix "@command_k:"
-  @show_key :__command_k_show
-  @handler_key :__command_k_handler
+  @show_key :command_k_show
+  @handler_key :command_k_handler
 
   ## Mount
 
@@ -26,17 +26,24 @@ defmodule CommandK.LiveView do
   def open(js \\ %JS{}), do: JS.push(js, @prefix <> "open")
   def close(js \\ %JS{}), do: JS.push(js, @prefix <> "close")
   def toggle(js \\ %JS{}), do: JS.push(js, @prefix <> "toggle")
+  def command_k(js \\ %JS{}), do: JS.push(js, @prefix <> "command_k")
 
-  defp handle_event(@prefix <> event, _params, socket) do
-    case event do
-      "open" ->
+  defp handle_event(@prefix <> event, params, socket) do
+    case {event, params} do
+      {"open", _} ->
         {:halt, do_open(socket)}
 
-      "close" ->
+      {"close", _} ->
         {:halt, do_close(socket)}
 
-      "toggle" ->
+      {"toggle", _} ->
         {:halt, do_toggle(socket)}
+
+      {"command_k", %{"metaKey" => true, "repeat" => false}} ->
+        {:halt, do_toggle(socket)}
+
+      _otherwise ->
+        {:halt, socket}
     end
   end
 
