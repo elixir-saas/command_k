@@ -34,6 +34,11 @@ defmodule CommandK.MixProject do
 
   defp deps do
     [
+      {:phoenix,
+       git: "https://github.com/phoenixframework/phoenix.git",
+       tag: "v1.7.0-rc.3",
+       only: :dev,
+       override: true},
       {:phoenix_live_view, "~> 0.18.14"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
