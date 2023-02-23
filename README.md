@@ -68,3 +68,46 @@ let liveSocket = new LiveSocket("/live", Socket, {
 
 You may refer to the documentation on Key Events for more information as to why
 we need to do this: https://hexdocs.pm/phoenix_live_view/bindings.html#key-events
+
+## Usage
+
+To render a `CommandK.LiveComponent`, add the following to your app layout template:
+
+```html
+<.live_component
+  id="command_k"
+  module={CommandK.LiveComponent}
+  command_k={@command_k}
+  command_k_context={@command_k_context}
+  show={@command_k_show}
+  on_cancel={CommandK.close()}
+/>
+```
+
+The assigns `@command_k`, `@command_k_show`, and `@command_k_context` are automatically
+injected by the library. This live component will render using the function component that was
+previously specified in your web module.
+
+Next, add the following `phx-` bindings to any element also in your app layout template:
+
+```html
+<main
+  class="..."
+  phx-window-keydown={CommandK.command_k()}
+  phx-key="k"
+>
+  ...
+</main>
+```
+
+You can tell CommandK to open the palette manually by calling `CommandK.open()`:
+
+```html
+<.button class="absolute right-4 bottom-4" phx-click={CommandK.open()}>
+  Command+K
+</.button>
+```
+
+See the `CommandK` module for more information.
+
+TODO: Add code documentation, expand on usage section here.
