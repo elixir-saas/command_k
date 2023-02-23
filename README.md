@@ -90,18 +90,6 @@ The assigns `@command_k`, `@command_k_show`, and `@command_k_context` are automa
 injected by the library. This live component will render using the function component that was
 previously specified in your web module.
 
-Next, add the following `phx-` bindings to any element also in your app layout template:
-
-```html
-<main
-  class="..."
-  phx-window-keydown={CommandK.command_k()}
-  phx-key="k"
->
-  ...
-</main>
-```
-
 You can tell CommandK to open the palette manually by calling `CommandK.open()`:
 
 ```html

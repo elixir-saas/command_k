@@ -71,14 +71,10 @@ defmodule Mix.Tasks.CommandK.Init do
           }
         })
 
-    Lastly, render the CommandK live component and attach the required phx bindings in your "app.html.heex" layout template:
+    Lastly, render the CommandK live component in your "app.html.heex" layout template:
 
-        <main
-          class="..."
-          phx-window-keydown={CommandK.command_k()}
-          phx-key="k"
-        >
-          <div ...>
+        <main class="...">
+          <div class="...">
             <.live_component
               id="command_k"
               module={CommandK.LiveComponent}

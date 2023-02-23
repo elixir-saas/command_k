@@ -5,7 +5,7 @@ defmodule CommandK.LiveComponent do
 
   def render(assigns) do
     ~H"""
-    <div>
+    <div phx-window-keydown={CommandK.command_k()} phx-key="k">
       <.dynamic
         :if={@show}
         {assigns}
