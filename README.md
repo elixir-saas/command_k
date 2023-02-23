@@ -21,7 +21,7 @@ View additional documentation at <https://hexdocs.pm/command_k>.
 CommandK includes an easy install task to bootstrap your app code:
 
 ```sh
-$ mix command_k.init     
+mix command_k.init     
 * creating lib/my_app_web/commands.ex
 * injecting lib/my_app_web/components/core_components.ex
 ```
@@ -71,7 +71,7 @@ we need to do this: https://hexdocs.pm/phoenix_live_view/bindings.html#key-event
 
 ## Usage
 
-To render a `CommandK.LiveComponent`, add the following to your app layout template:
+To render a `CommandK.LiveComponent`, add the following live component to your app layout template:
 
 ```html
 <.live_component
