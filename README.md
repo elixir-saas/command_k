@@ -1,11 +1,10 @@
 # CommandK
 
-**TODO: Add description**
+Command+K implementation for Phoenix LiveView.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `command_k` to your list of dependencies in `mix.exs`:
+Install by adding `command_k` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -15,7 +14,4 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/command_k>.
-
+View additional documentation at <https://hexdocs.pm/command_k>.
