@@ -71,9 +71,25 @@ defmodule Mix.Tasks.CommandK.Init do
           }
         })
 
-    See the documentation on Key Events for more information:
+    Lastly, render the CommandK live component and attach the required phx bindings in your "app.html.heex" layout template:
 
-        https://hexdocs.pm/phoenix_live_view/bindings.html#key-events
+        <main
+          class="..."
+          phx-window-keydown={CommandK.command_k()}
+          phx-key="k"
+        >
+          <div ...>
+            <.live_component
+              id="command_k"
+              module={CommandK.LiveComponent}
+              command_k={@command_k}
+              command_k_context={@command_k_context}
+              show={@command_k_show}
+              on_cancel={CommandK.close()}
+            />
+            ...
+          </div>
+        </main>
     """)
   end
 
