@@ -20,7 +20,8 @@ defmodule Mix.Tasks.CommandK.Init do
     ctx_app = Mix.Phoenix.context_app()
 
     base = Mix.Phoenix.base()
-    binding = [assigns: [web_module: Mix.Phoenix.web_module(base)]]
+    web_module = Mix.Phoenix.web_module(base)
+    binding = [assigns: [web_module: web_module]]
 
     commands_file = Mix.Phoenix.web_path(ctx_app, "commands.ex")
     core_components_file = Mix.Phoenix.web_path(ctx_app, "components/core_components.ex")
@@ -37,6 +38,43 @@ defmodule Mix.Tasks.CommandK.Init do
       ),
       core_components_file
     )
+
+    Mix.shell().info("""
+
+    Configure CommandK in the `live_view` section in your #{inspect(web_module)} module:
+
+        def live_view do
+          quote do
+            use Phoenix.LiveView,
+              layout: {#{inspect(web_module)}.Layouts, :app}
+
+            use CommandK,
+              handler: #{inspect(web_module)}.Commands,
+              component: &#{inspect(web_module)}.CoreComponents.command_k_palette/1
+
+            unquote(html_helpers())
+          end
+        end
+
+    Then, modify your assets/app.js code to capture meta key information on keydown:
+
+        let liveSocket = new LiveSocket("/live", Socket, {
+          params: {_csrf_token: csrfToken},
+          metadata: {
+            keydown: (e, el) => {
+              return {
+                key: e.key,
+                metaKey: e.metaKey,
+                repeat: e.repeat
+              }
+            }
+          }
+        })
+
+    See the documentation on Key Events for more information:
+
+        https://hexdocs.pm/phoenix_live_view/bindings.html#key-events
+    """)
   end
 
   defp inject_eex_before_final_end(content_to_inject, file_path) do
