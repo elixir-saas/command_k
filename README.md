@@ -2,6 +2,8 @@
 
 Command+K implementation for Phoenix LiveView.
 
+[![Command+K demo gif](https://i.gyazo.com/49dace9b8453625bd27ee9224d8011f5.gif)](https://gyazo.com/49dace9b8453625bd27ee9224d8011f5)
+
 ## Installation
 
 Install by adding `command_k` to your list of dependencies in `mix.exs`:
